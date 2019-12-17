@@ -3,10 +3,10 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Model;
-use App\Job;
+use App\Jobs;
 use Faker\Generator as Faker;
 
-$factory->define(Job::class, function (Faker $faker) {
+$factory->define(Jobs::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
     ];

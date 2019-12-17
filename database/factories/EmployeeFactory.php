@@ -3,11 +3,11 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Model;
-use App\Employee;
-use App\Job;
+use App\Employees;
+use App\Jobs;
 use Faker\Generator as Faker;
 
-$factory->define(Employee::class, function (Faker $faker) {
+$factory->define(Employees::class, function (Faker $faker) {
     $jobsID = DB::table('jobs')->pluck('id_jobs');
     
     return [

@@ -1,7 +1,7 @@
 <?php
 
-use App\Employee;
-use App\Job;
+use App\Employees;
+use App\Jobs;
 use Illuminate\Database\Seeder;
 use App\User;
 
@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         factory(User::class,1)->create();
-        factory(Job::class,10)->create();
-        factory(Employee::class,150)->create();
+        factory(Jobs::class,10)->create();
+        factory(Employees::class,150)->create();
     }
 }
