@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Employee;
 use App\Employees;
+use App\Job;
 use App\Jobs;
 use Illuminate\Http\Request;
 
@@ -15,8 +17,8 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $da = Employees::all();
-        return view('')->with('', $ta);
+        $employees = Employee::all();
+        return view('employees.index')->with('employees', $employees);
     }
 
     /**
@@ -26,8 +28,8 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        $da = Jobs::all();
-        return view('')->with('', $ta);
+        $employees = Employee::all();
+        return view('employees.create')->with('employees', $employees);
     }
 
     /**
@@ -45,7 +47,7 @@ class EmployeesController extends Controller
             'kontak'=>'required',
             'alamat'=>'required',
         ]);
-        $employees = new Employees([
+        $employees = new Employee([
             'id_jobs' => $request->input('job'),
             'name' => $request->input('nama'),
             'email' => $request->input('email'),
@@ -53,7 +55,7 @@ class EmployeesController extends Controller
             'address' => $request->input('alamat')
         ]);
         $employees->save();
-        return redirect('employe');
+        return redirect('employes.index');
     }
 
     /**
@@ -75,9 +77,9 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        $jobs = Jobs::all();
-        $data = Employees::where('id_employees', '=', $id)->firstOrFail();
-        return view('')->with('employees', $data)->with('jobs', $jobs);
+        $jobs = Job::all();
+        $data = Employee::where('id_employees', '=', $id)->firstOrFail();
+        return view('')->with('employee', $data)->with('jobs', $jobs);
     }
 
     /**
@@ -103,8 +105,8 @@ class EmployeesController extends Controller
             'phone' => $request->input('kontak'),
             'address' => $request->input('alamat')
         ];
-        Employees::where('id_employees',$id)->update($data);
-        return redirect('employ');
+        Employee::where('id_employees',$id)->update($data);
+        return redirect('employees.index');
     }
 
     /**
@@ -115,7 +117,7 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        Employees::where('id_employees',$id)->delete();
+        Employee::where('id_employees',$id)->delete();
         return redirect('employe');
     }
 }

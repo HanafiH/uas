@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Job;
+use App\Employee;
 use App\Jobs;
 use Illuminate\Http\Request;
 
@@ -14,8 +16,8 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $da = Jobs::all();
-        return view('')->with('', $ta);
+        $jobs = Job::all();
+        return view('jobs.index')->with('jobs', $jobs);
     }
 
     /**
@@ -25,7 +27,7 @@ class JobsController extends Controller
      */
     public function create()
     {
-        return view('');
+        return view('jobs.create');
     }
 
     /**
@@ -37,10 +39,10 @@ class JobsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama'=>'required',
+            'name'=>'required',
         ]);
-        $jobs = new Jobs([
-            'nama' => $request->input('nama')
+        $jobs = new Job([
+            'name' => $request->input('name')
         ]);
         $jobs->save();
         return redirect('jobs');
@@ -65,8 +67,8 @@ class JobsController extends Controller
      */
     public function edit($id)
     {
-        $da = Jobs::where('id_jobs', '=', $id)->firstOrFail();
-        return view('')->with('', $ta);
+        $jobs = Job::where('id_jobs', '=', $id)->firstOrFail();
+        return view('jobs.edit')->with('jobs', $jobs);
     }
 
     /**
@@ -79,12 +81,12 @@ class JobsController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'nama'=>'required',
+            'name'=>'required',
         ]);
         $data = [
-            'nama' => $request->nama,
+            'name' => $request->name,
         ];
-        Jobs::where('id_jobs',$id)->update($data);
+        Job::where('id_jobs',$id)->update($data);
         return redirect('jobs');
     }
 
@@ -96,7 +98,8 @@ class JobsController extends Controller
      */
     public function destroy($id)
     {
-        Jobs::where('id_jobs',$id)->delete();
-        return redirect('job');
+        Job::where('id_jobs',$id)->delete();
+        Employee::where('id_jobs',$id)->delete();
+        return redirect('jobs.index');
     }
 }

@@ -1,6 +1,6 @@
-@extends('')
+@extends('layout.app')
 @section('employees','active')
-@section('')
+@section('content')
 <form action="{{route('employees.store')}}" method="POST">
   @csrf
   <div class="form-group">
@@ -13,7 +13,7 @@
   </div>
   <div class="form-group">
     <label>Nama Pegawai</label>
-    <input type="text" name="nama" class="form-control" placeholder="...">
+    <input type="text" name="name" class="form-control" placeholder="...">
   </div>
   <div class="form-group">
     <label>E-Mail</label>
@@ -21,11 +21,11 @@
   </div>
   <div class="form-group">
     <label>Kontak</label>
-    <input type="text" name="kontak" class="form-control" placeholder="...">
+    <input type="text" name="phone" class="form-control" placeholder="...">
   </div>
   <div class="form-group">
     <label>Alamat</label>
-    <textarea name="alamat" class="form-control" placeholder="..."></textarea>
+    <textarea name="address" class="form-control" placeholder="..."></textarea>
   </div>
   <button type="submit" class="btn btn-primary">Simpan</button>
 </form>
