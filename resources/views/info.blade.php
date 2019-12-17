@@ -69,6 +69,7 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/jobs') }}">Jobs</a>
+                        <a href="{{ url('/employees') }}">Employees</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
 

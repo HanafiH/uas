@@ -69,6 +69,8 @@
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/jobs') }}">Jobs</a>
+                        <a href="{{ url('/employees') }}">Employees</a>
+                        
                     @else
                         <a href="{{ route('login') }}">Login</a>
 
@@ -88,7 +90,7 @@
                 <div class="links">
                     <!-- ganti url dengan link github anda -->
                     <!-- <a href="#">GitHub</a> -->
-                    <a href="#">www</a>
+                    <a href="https://github.com/HanafiH/uas">Link Github</a>
                 </div>
             </div>
         </div>
