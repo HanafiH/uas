@@ -16,8 +16,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/jobs', 'JobsController');
-Route::resource('/employees', 'EmployeesController');
+Route::resource('/jobs', 'JobsController')->middleware('auth');
+Route::resource('/employees', 'EmployeesController')->middleware('auth');
 Route::get('/info','HomeController@info');
 Auth::routes();
 
