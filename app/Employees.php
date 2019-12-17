@@ -1,10 +1,11 @@
 <?php
 
 namespace App;
+use App\Jobs;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Employee extends Model
+class Employees extends Model
 {
     protected $table = 'employees';
     protected $fillable = [
@@ -13,6 +14,6 @@ class Employee extends Model
 
     public function jobs()
     {
-        return $this->belongsTo('App\Jobs','id_jobs');
+        return $this->belongsTo('App\Jobs');
     }
 }

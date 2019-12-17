@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Job;
-use App\Employee;
 use App\Jobs;
+use App\Employees;
 use Illuminate\Http\Request;
 
 class JobsController extends Controller
@@ -16,7 +15,7 @@ class JobsController extends Controller
      */
     public function index()
     {
-        $jobs = Job::all();
+        $jobs = Jobs::all();
         return view('jobs.index')->with('jobs', $jobs);
     }
 
@@ -41,7 +40,7 @@ class JobsController extends Controller
         $request->validate([
             'name'=>'required',
         ]);
-        $jobs = new Job([
+        $jobs = new Jobs([
             'name' => $request->input('name')
         ]);
         $jobs->save();
@@ -67,7 +66,7 @@ class JobsController extends Controller
      */
     public function edit($id)
     {
-        $jobs = Job::where('id_jobs', '=', $id)->firstOrFail();
+        $jobs = Jobs::where('id_jobs', '=', $id)->firstOrFail();
         return view('jobs.edit')->with('jobs', $jobs);
     }
 
@@ -86,7 +85,7 @@ class JobsController extends Controller
         $data = [
             'name' => $request->name,
         ];
-        Job::where('id_jobs',$id)->update($data);
+        Jobs::where('id_jobs',$id)->update($data);
         return redirect('jobs');
     }
 
@@ -98,8 +97,9 @@ class JobsController extends Controller
      */
     public function destroy($id)
     {
-        Job::where('id_jobs',$id)->delete();
-        Employee::where('id_jobs',$id)->delete();
-        return redirect('jobs.index');
+        // dd($id);
+        Jobs::where('id_jobs',$id)->delete();
+        Employees::where('id_jobs',$id)->delete();
+        return redirect('jobs');
     }
 }

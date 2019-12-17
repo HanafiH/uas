@@ -19,7 +19,11 @@
         @foreach($employees as $data)
         <tr>
             <th scope="row">{{$data->id_employees}}</th>
-            <td>{{$data->jobs->name}}</td>
+            <td>
+            @foreach($jobs as $job)
+            @if($job->id_jobs == $data->id_jobs){{$job->name}} @endif
+            @endforeach
+            </td>
             <td>{{$data->name}}</td>
             <td>{{$data->email}}</td>
             <td>{{$data->phone}}</td>
